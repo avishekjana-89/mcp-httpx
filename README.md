@@ -4,6 +4,10 @@
 
 The HTTPX MCP Server is an implementation of the Model Context Protocol (MCP) that performs REST API operations using the Python `httpx` library. It provides various methods for making HTTP requests, including `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`.
 
+<img width="1425" alt="image" src="https://github.com/user-attachments/assets/9d190617-cbbb-40e0-9f9e-cbeaaf2381b8" />
+
+<img width="1426" alt="image" src="https://github.com/user-attachments/assets/557fee9f-929a-4571-9aa2-84b5821d0bc0" />
+
 ## 🚀 Quick Start
 
 ### Using `uv`:
