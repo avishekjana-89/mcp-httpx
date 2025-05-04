@@ -11,7 +11,7 @@ def success_response(message, status_code=None, response_text=None):
     if status_code:
         result.append(f"Status: {status_code}")
     if response_text:
-        result.append(f"Response: {response_text[:1000]}{'...' if len(response_text) > 1000 else ''}")
+        result.append(f"Response: {response_text[:10000]}{'...' if len(response_text) > 10000 else ''}")
     return {"content": result, "isError": False}
 
 
