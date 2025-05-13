@@ -34,6 +34,8 @@ The server provides the following core tools for interacting with web APIs:
 - **Description**: Executes a `GET` request for the specified URL.
 - **Arguments**:
   - `url`: A structured URL with scheme, host, and path (e.g., `https://example.com/path?query=value`).
+  - `token`: Optional token for authentication.
+  - `headers`: Optional HTTP headers as key-value pairs (e.g., `{"Content-Type": "application/json"}`).
 - **Returns**: A dictionary containing the URL, status code, and the response body.
 
 ### `post_request`
@@ -78,15 +80,17 @@ The server provides the following core tools for interacting with web APIs:
 To run the MCP server using `uv`, add the following configuration to your `claude_desktop_config.json`:
 
 ```json
-"mcpServers": {
-  "mcp-httpx": {
-    "command": "uv",
-    "args": [
-      "--directory",
-      "parent_of_servers_repo/mcp-httpx/src/mcp-httpx",
-      "run",
-      "server.py"
-    ]
+{
+  "mcpServers":{
+    "mcp-httpx":{
+      "command":"uv",
+      "args":[
+        "--directory",
+        "path_of_the_repo/mcp-httpx/src/mcp-httpx",
+        "run",
+        "server.py"
+      ]
+    }
   }
 }
 ```
@@ -96,17 +100,19 @@ To run the MCP server using `uv`, add the following configuration to your `claud
 To run the MCP server via Docker, add the following configuration to your `claude_desktop_config.json`:
 
 ```json
-"mcpServers": {
-  "mcp-httpx": {
-    "command": "docker",
-    "args": [
-      "run",
-      "-i",
-      "--rm",
-      "--name",
-      "mcp-httpx",
-      "mcp/httpx"
-    ]
+{
+  "mcpServers":{
+    "mcp-httpx":{
+      "command":"docker",
+      "args":[
+        "run",
+        "-i",
+        "--rm",
+        "--name",
+        "mcp-httpx",
+        "mcp/httpx"
+      ]
+    }
   }
 }
 ```
