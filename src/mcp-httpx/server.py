@@ -20,20 +20,33 @@ def error_response(message):
 
 
 @mcp.tool(description='Executes a GET request for the specified URL')
-async def get_request(url: str) -> dict | None:
+async def get_request(url: str, token: str = "", headers: dict = {}) -> dict | None:
     """
     Perform GET request for given url
 
     Args:
         url: url is a structured representation of a web address with components like scheme, host, and path
         ( e.g. "https://example.com/path?query=value")
+        token: Optional token to be used for authentication
+        headers: Optional headers are case-insensitive key-value pairs that represent HTTP header fields in requests and
+        responses, allowing you to set metadata like content type, authentication credentials, and other protocol information(e.g. {"my-custom-header": "header"})
 
     Returns:
         Dictionary containing url, status code and response body.
     """
+    # Prepare headers
+    request_headers = {"Content-Type": CONTENT_TYPE}
+
+    # Add token if provided
+    if token:
+        request_headers["Authorization"] = f"Bearer {token}"
+
+    if headers:
+        request_headers.update(headers)
+
     async with httpx.AsyncClient() as client:
         try:
-            response = await client.get(url)
+            response = await client.get(url, headers=request_headers)
             return success_response(
                 f"GET request to {url}",
                 response.status_code,
